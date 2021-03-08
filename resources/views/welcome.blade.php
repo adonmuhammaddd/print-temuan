@@ -100,13 +100,17 @@
     </body>
 
     <script>
+        var username;
+        var satkerId = 0;
+        var roleId = 30;
+        var jenisDokumen = 'bpk';
         $(document).ready(function()
         {
             var url = new URL(window.location.href);
-            var username = url.searchParams.get("username");
-            var satkerId = url.searchParams.get("satkerid");
-            var roleId = url.searchParams.get("roleid");
-            var jenisDokumen = url.searchParams.get("jenisdokumen");
+            // username = url.searchParams.get("username");
+            // satkerId = url.searchParams.get("satkerid");
+            // roleId = url.searchParams.get("roleid");
+            // jenisDokumen = url.searchParams.get("jenisdokumen");
             hideURLParams();
             // getUserData();
         });
@@ -119,9 +123,9 @@
                 // url: "http://127.0.0.1:5000/api/roomstatus",
                 url: "http://mad-be.gakkum.id/api/auth/print-grid",
                 data: {
-                    jenisdokumen: 'bpk', 
-                    roleid:50
-                    // satkerid:0
+                    jenisdokumen: jenisDokumen, 
+                    roleid:roleId,
+                    satkerid:satkerId
                 },
                 success: function (data) 
                 {
@@ -136,7 +140,7 @@
         }
         function hideURLParams() {
             //Parameters to hide (ie ?success=value, ?error=value, etc)
-            var hide = ['success','error'];
+            var hide = ['username','satkerid', 'roleid', 'jenisdokumen'];
             for(var h in hide) {
                 if(getURLParameter(h)) {
                     history.replaceState(null, document.getElementsByTagName("title")[0].innerHTML, window.location.pathname);
