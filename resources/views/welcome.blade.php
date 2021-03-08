@@ -102,13 +102,12 @@
     <script>
         $(document).ready(function()
         {
-            // var url_string = "http://www.example.com/t.html?a=1&b=3&c=m2-m3-m4-m5"; //window.location.href
-            // var url = new URL(url_string);
-            // var c = url.searchParams.get("c");
-            // console.log(c);
-
-            console.log(getURL());
-
+            var url = new URL(window.location.href);
+            var username = url.searchParams.get("username");
+            var satkerId = url.searchParams.get("satkerid");
+            var roleId = url.searchParams.get("roleid");
+            var jenisDokumen = url.searchParams.get("jenisdokumen");
+            hideURLParams();
             // getUserData();
         });
         
@@ -130,6 +129,19 @@
                     console.log(data);
                 }
             });
+        }
+
+        function getURLParameter(name) {
+            return decodeURI((RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
+        }
+        function hideURLParams() {
+            //Parameters to hide (ie ?success=value, ?error=value, etc)
+            var hide = ['success','error'];
+            for(var h in hide) {
+                if(getURLParameter(h)) {
+                    history.replaceState(null, document.getElementsByTagName("title")[0].innerHTML, window.location.pathname);
+                }
+            }
         }
     </script>
 </html>
