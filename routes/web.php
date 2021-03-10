@@ -16,3 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/dashboard', function () {
     return view('welcome');
 });
+
+Route::get('/print', function () {
+    return view('print');
+});
+Route::get('/printtest', function () {
+    return view('printtest');
+});
+
+Route::resource('temuan', 'PrintTemuanController');
+
+Route::post('/dokumentemuan/catch-data', 'PrintTemuanController@catchData');
+Route::get('/dokumentemuan/print', 'PrintTemuanController@printData');
